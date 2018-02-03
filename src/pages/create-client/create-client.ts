@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NavController } from 'ionic-angular';
+import * as uuid from 'uuid';
 
 import { ClientService } from '../../services/client.service';
 
@@ -17,6 +18,7 @@ export class CreateClientPage {
     public fb: FormBuilder,
   ) {
     this.form = this.fb.group({
+      id: new FormControl(uuid()),
       name: new FormControl(),
       address: new FormControl(),
     });

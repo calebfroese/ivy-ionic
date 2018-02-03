@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{ client?.name }}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list inset>
+        <ion-item>
+            <ion-label floating>Name</ion-label>
+            <ion-input [value]="client?.name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Address</ion-label>
+            <ion-input [value]="client?.address"></ion-input>
+        </ion-item>
+    </ion-list>
+</ion-content>
