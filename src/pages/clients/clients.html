@@ -14,7 +14,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let client of service?.clientArray" (click)="select(client.id)">
+    <ion-item *ngFor="let client of service.clients | async" (click)="select(client.id)">
       <h2>{{ client.name }}</h2>
       <p>{{ client.address }}</p>
     </ion-item>
