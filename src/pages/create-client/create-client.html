@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>New Client</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="form" (ngSubmit)="create(form.value)">
+        <ion-list inset>
+            <ion-item>
+                <ion-label floating>Name</ion-label>
+                <ion-input formControlName="name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Address</ion-label>
+                <ion-input formControlName="address"></ion-input>
+            </ion-item>
+        </ion-list>
+
+        <div padding>
+            <button type="submit" ion-button full>Create</button>
+        </div>
+    </form>
+</ion-content>
