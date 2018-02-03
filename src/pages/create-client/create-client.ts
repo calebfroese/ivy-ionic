@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NavController } from 'ionic-angular';
 
+import { ClientService } from '../../services/client.service';
+
 @Component({
   selector: 'page-create-client',
   templateUrl: 'create-client.html',
@@ -9,7 +11,11 @@ import { NavController } from 'ionic-angular';
 export class CreateClientPage {
   form: FormGroup;
 
-  constructor(public navCtrl: NavController, public fb: FormBuilder) {
+  constructor(
+    public navCtrl: NavController,
+    public service: ClientService,
+    public fb: FormBuilder,
+  ) {
     this.form = this.fb.group({
       name: new FormControl(),
       address: new FormControl(),
@@ -17,6 +23,6 @@ export class CreateClientPage {
   }
 
   create(value) {
-    console.log(value);
+    this.service.create(value);
   }
 }
