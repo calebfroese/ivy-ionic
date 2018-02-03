@@ -3,18 +3,23 @@ import * as uuid from 'uuid';
 
 @Injectable()
 export class ClientService {
-  clients: any[];
-  _selected: string;
+  clients: Map<string, any>;
+  private _selected: string;
   get selected() {
-    return this.clients.find(client => client.id === this._selected);
+    return this.clients.get(this._selected);
+  }
+  get clientArray() {
+    return Array.from(this.clients).map(c => c[1]);
   }
 
   constructor() {
-    this.clients = [{ id: uuid(), name: 'Bob', address: '123 Example Avenue' }];
+    this.clients = new Map();
+    const id = uuid();
+    this.clients.set(id, { id, name: 'Bob', address: '123 Example Avenue' });
   }
 
-  create(value: any) {
-    this.clients.push(value);
+  upsert(value: any) {
+    this.clients.set(value.id, value);
   }
 
   select(id: string) {

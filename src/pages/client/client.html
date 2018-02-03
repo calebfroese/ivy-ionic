@@ -1,11 +1,11 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>New Client</ion-title>
+        <ion-title>Client</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <form [formGroup]="form" (ngSubmit)="create(form.value)">
+    <form [formGroup]="form" (ngSubmit)="submit(form.value)">
         <ion-list inset>
             <ion-item>
                 <ion-label floating>Name</ion-label>
@@ -18,7 +18,7 @@
         </ion-list>
 
         <div padding>
-            <button type="submit" ion-button full>Create</button>
+            <button type="submit" ion-button full>Submit</button>
         </div>
     </form>
 </ion-content>
