@@ -24,5 +24,6 @@ export class CreateClientPage {
 
   create(value) {
     this.service.create(value);
+    this.navCtrl.pop();
   }
 }
