@@ -14,12 +14,13 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding #item *ngFor="let client of clients$ | async | alphasort:'name'" (click)="select(client)">
+    <ion-item-sliding #item *ngFor="let client of clients$ | async | alphasort:'name'">
       <ion-item>
         <h2>{{ client.name }}</h2>
         <p>{{ client.address }}</p>
       </ion-item>
       <ion-item-options side="right">
+        <button ion-button (click)="select(client)">Edit</button>
         <button ion-button color="danger" (click)="delete(client)">Delete</button>
       </ion-item-options>
     </ion-item-sliding>
