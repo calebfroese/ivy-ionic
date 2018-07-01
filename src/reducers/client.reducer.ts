@@ -1,6 +1,6 @@
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 
-import { ClientActionsUnion } from '../actions/client.actions';
+import { ClientActionsUnion, ClientActions } from '../actions/client.actions';
 
 const clientAdapter = createEntityAdapter<Client>();
 
@@ -13,6 +13,9 @@ export function reducer(
   action: ClientActionsUnion,
 ) {
   switch (action.type) {
+    case ClientActions.Create:
+      return clientAdapter.addOne(action.payload, state);
+
     default:
       return state;
   }
