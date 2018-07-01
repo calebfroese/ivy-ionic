@@ -6,7 +6,6 @@ import { Nav, Platform } from 'ionic-angular';
 
 import { Initialize } from '../actions/app.actions';
 import { ClientsPage } from '../pages/clients/clients';
-import { HomePage } from '../pages/home/home';
 import { JobsPage } from '../pages/jobs/jobs';
 
 @Component({
@@ -29,9 +28,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Clients', component: ClientsPage },
       { title: 'Jobs', component: JobsPage },
+      { title: 'Clients', component: ClientsPage },
     ];
   }
 
