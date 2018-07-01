@@ -7,6 +7,7 @@ import {
 } from '@ngrx/store';
 import { storeFreeze } from 'ngrx-store-freeze';
 
+import { AppActions } from '../actions/app.actions';
 import * as fromApp from './app.reducer';
 import * as fromClient from './client.reducer';
 import * as fromJob from './job.reducer';
@@ -32,7 +33,21 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
   };
 }
 
-export const metaReducers: MetaReducer<State>[] = [logger, storeFreeze];
+export function rehydrate(reducer: ActionReducer<State>): ActionReducer<State> {
+  return function(state: State, action: any): State {
+    if (action.type === AppActions.Hydrate) {
+      console.warn('Hydrating', action.payload)
+      return { ...state, ...action.payload };
+    }
+    return reducer(state, action);
+  };
+}
+
+export const metaReducers: MetaReducer<State>[] = [
+  logger,
+  storeFreeze,
+  rehydrate,
+];
 
 export const getAppState = createFeatureSelector<fromApp.State>('app');
 export const getClientState = createFeatureSelector<fromClient.State>('client');

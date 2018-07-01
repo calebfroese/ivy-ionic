@@ -38,5 +38,10 @@
   "devDependencies": {
     "@ionic/app-scripts": "3.1.8",
     "typescript": "2.9.2"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-sqlite-storage": {}
+    }
   }
 }
