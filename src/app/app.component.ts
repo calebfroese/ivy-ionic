@@ -7,6 +7,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { Initialize } from '../actions/app.actions';
 import { ClientsPage } from '../pages/clients/clients';
 import { HomePage } from '../pages/home/home';
+import { JobsPage } from '../pages/jobs/jobs';
 
 @Component({
   templateUrl: 'app.html',
@@ -14,7 +15,7 @@ import { HomePage } from '../pages/home/home';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ClientsPage;
+  rootPage: any = JobsPage;
 
   pages: Array<{ title: string; component: any }>;
 
@@ -30,6 +31,7 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Clients', component: ClientsPage },
+      { title: 'Jobs', component: JobsPage },
     ];
   }
 
