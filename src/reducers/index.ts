@@ -32,8 +32,9 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 export const metaReducers: MetaReducer<State>[] = [logger, storeFreeze];
 
 export const getAppState = createFeatureSelector<fromApp.State>('app');
-export const getClientState = createFeatureSelector<fromApp.State>('client');
+export const getClientState = createFeatureSelector<fromClient.State>('client');
 
+export const getClients = createSelector(getClientState, fromClient.selectAll);
 export const getInitialized = createSelector(
   getAppState,
   fromApp.getInitialized,
