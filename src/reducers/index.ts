@@ -35,8 +35,10 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 
 export function rehydrate(reducer: ActionReducer<State>): ActionReducer<State> {
   return function(state: State, action: any): State {
-    if (action.type === AppActions.Hydrate)
+    if (action.type === AppActions.Hydrate) {
+      console.warn('Hydrating', action.payload)
       return { ...state, ...action.payload };
+    }
     return reducer(state, action);
   };
 }
