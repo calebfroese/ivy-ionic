@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { NavController, NavParams } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+
 import { Create, Update } from '../../actions/job.actions';
+import { getClients } from '../../reducers';
 
 @Component({
   selector: 'page-job',
   templateUrl: 'job.html',
 })
-export class JobPage {
+export class JobPage implements OnInit {
+  clients$: Observable<Client[]>;
   id: string;
   form: FormGroup;
 
@@ -24,11 +28,18 @@ export class JobPage {
       createdAt: new FormControl(new Date().toISOString()),
       estHours: new FormControl(),
       notes: new FormControl(),
+      client: new FormControl(),
     });
     this.form.patchValue(navParams.get('job') || {});
   }
 
-  submit(value: Job) {
+  ngOnInit() {
+    this.clients$ = this.store.select(getClients);
+  }
+
+  submit(value: Job & { client: Client }) {
+    value.clientId = value.client.id;
+    delete value.client;
     if (!value.id) this.store.dispatch(new Create(value));
     else this.store.dispatch(new Update(value));
     this.navCtrl.pop();
