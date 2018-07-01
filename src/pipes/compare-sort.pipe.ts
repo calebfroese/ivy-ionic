@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   pure: true,
 })
 export class CompareSortPipe implements PipeTransform {
-  transform(values: any[], discriminator: string, reverse?: boolean) {
+  transform(values: any[], discriminator: string, reverse: boolean) {
     const direction = reverse ? -1 : 1;
     return values.sort(
       (a, b) =>

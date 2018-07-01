@@ -13,8 +13,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item-sliding #item *ngFor="let job of jobs$ | async | comparesort:'date'" (click)="select(job)">
+  <ion-segment [(ngModel)]="view">
+    <ion-segment-button value="upcoming">
+      Upcoming
+    </ion-segment-button>
+    <ion-segment-button value="past">
+      Past
+    </ion-segment-button>
+  </ion-segment>
+  <ion-list *ngIf="view === 'upcoming'">
+    <ion-item-sliding #item *ngFor="let job of upcomingJobs$ | async | comparesort:'date'" (click)="select(job)">
       <ion-item>
         <h2>{{ job.client?.name }}</h2>
         <p>{{ job.date | dayjs:'format':'MMMM D YYYY, h:mm a' }}</p>
@@ -23,5 +31,11 @@
         <button ion-button color="danger" (click)="delete(job)">Delete</button>
       </ion-item-options>
     </ion-item-sliding>
+  </ion-list>
+  <ion-list *ngIf="view === 'past'">
+    <ion-item *ngFor="let job of pastJobs$ | async | comparesort:'date':true" (click)="select(job)">
+      <h2>{{ job.client?.name }}</h2>
+      <p>{{ job.date | dayjs:'format':'MMMM D YYYY, h:mm a' }}</p>
+    </ion-item>
   </ion-list>
 </ion-content>
