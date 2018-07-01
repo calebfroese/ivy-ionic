@@ -1,8 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Store } from '@ngrx/store';
 import { Nav, Platform } from 'ionic-angular';
 
+import { Initialize } from '../actions/app.actions';
 import { ClientsPage } from '../pages/clients/clients';
 import { HomePage } from '../pages/home/home';
 
@@ -20,6 +22,7 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
+    public store: Store<any>,
   ) {
     this.initializeApp();
 
@@ -36,6 +39,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.store.dispatch(new Initialize());
     });
   }
 
