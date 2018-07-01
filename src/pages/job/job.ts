@@ -30,6 +30,7 @@ export class JobPage implements OnInit {
       notes: new FormControl(),
       client: new FormControl(),
     });
+    console.log(navParams.get('job'));
     this.form.patchValue(navParams.get('job') || {});
   }
 

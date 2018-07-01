@@ -36,7 +36,7 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 export function rehydrate(reducer: ActionReducer<State>): ActionReducer<State> {
   return function(state: State, action: any): State {
     if (action.type === AppActions.Hydrate) {
-      console.warn('Hydrating', action.payload)
+      console.warn('Hydrating', action.payload);
       return { ...state, ...action.payload };
     }
     return reducer(state, action);
@@ -53,8 +53,19 @@ export const getAppState = createFeatureSelector<fromApp.State>('app');
 export const getClientState = createFeatureSelector<fromClient.State>('client');
 export const getJobState = createFeatureSelector<fromJob.State>('job');
 
-export const getClients = createSelector(getClientState, fromClient.selectAll);
-export const getJobs = createSelector(getJobState, fromJob.selectAll);
+export const getClients = createSelector(
+  getClientState,
+  fromClient.selectAll,
+);
+export const getAllJobs = createSelector(getJobState, fromJob.selectAll);
+
+export const getJobs = createSelector(
+  getAllJobs,
+  createSelector(getClientState, fromClient.selectEntities),
+  (jobs, clients) =>
+    jobs.map(job => ({ ...job, client: clients[job.clientId] })),
+);
+
 export const getInitialized = createSelector(
   getAppState,
   fromApp.getInitialized,

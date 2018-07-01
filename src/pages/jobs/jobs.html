@@ -16,7 +16,7 @@
   <ion-list>
     <ion-item-sliding #item *ngFor="let job of jobs$ | async" (click)="select(job)">
       <ion-item>
-        <h2>{{ job.id }}</h2>
+        <h2>{{ job.client?.name }}</h2>
         <p>{{ job.date | dayjs:'format':'MMMM D YYYY, h:mm a' }}</p>
       </ion-item>
       <ion-item-options side="right">
