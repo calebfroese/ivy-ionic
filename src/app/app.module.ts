@@ -10,6 +10,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { AppEffects } from '../effects/app.effects';
 import { ClientEffects } from '../effects/client.effects';
+import { JobEffects } from '../effects/job.effects';
 import { PAGES } from '../pages';
 import { metaReducers, reducers } from '../reducers';
 import { ClientService } from '../services/client.service';
@@ -20,7 +21,7 @@ import { MyApp } from './app.component';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    EffectsModule.forRoot([AppEffects, ClientEffects]),
+    EffectsModule.forRoot([AppEffects, ClientEffects, JobEffects]),
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
