@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import * as dayjs from 'dayjs';
 import { NavController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
-import * as dayjs from 'dayjs';
+import { map } from 'rxjs/operators';
+
 import { Delete } from '../../actions/job.actions';
 import { getJobs } from '../../reducers';
 import { JobPage } from '../job/job';
-import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'page-jobs',
