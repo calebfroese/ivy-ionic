@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { getClients } from '../../reducers';
 import { ClientPage } from '../client/client';
+import { Delete } from '../../actions/client.actions';
 
 @Component({
   selector: 'page-clients',
@@ -25,5 +26,9 @@ export class ClientsPage implements OnInit {
 
   create() {
     this.navCtrl.push(ClientPage);
+  }
+
+  delete(client: Client) {
+    this.store.dispatch(new Delete(client.id));
   }
 }

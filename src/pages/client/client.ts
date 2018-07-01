@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { NavController, NavParams } from 'ionic-angular';
-import * as uuid from 'uuid';
 
 import { Create, Update } from '../../actions/client.actions';
 

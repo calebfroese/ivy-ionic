@@ -23,6 +23,9 @@ export function reducer(
         state,
       );
 
+      case ClientActions.Delete:
+      return clientAdapter.removeOne(action.payload, state);
+
     default:
       return state;
   }
