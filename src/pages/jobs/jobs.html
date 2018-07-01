@@ -4,6 +4,11 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Jobs</ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="create()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -11,8 +16,8 @@
   <ion-list>
     <ion-item-sliding #item *ngFor="let job of jobs$ | async" (click)="select(job)">
       <ion-item>
-        <h2>{{ job.name }}</h2>
-        <p>{{ job.address }}</p>
+        <h2>{{ job.id }}</h2>
+        <p>{{ job.date | dayjs:'format':'MMMM D YYYY, h:mm a' }}</p>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="delete(job)">Delete</button>

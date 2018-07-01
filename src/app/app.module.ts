@@ -12,6 +12,7 @@ import { AppEffects } from '../effects/app.effects';
 import { ClientEffects } from '../effects/client.effects';
 import { JobEffects } from '../effects/job.effects';
 import { PAGES } from '../pages';
+import { DayPipe } from '../pipes/dayjs.pipe';
 import { metaReducers, reducers } from '../reducers';
 import { ClientService } from '../services/client.service';
 import { MyApp } from './app.component';
@@ -27,7 +28,7 @@ import { MyApp } from './app.component';
       maxAge: 25,
     }),
   ],
-  declarations: [MyApp, ...PAGES],
+  declarations: [MyApp, DayPipe, ...PAGES],
   bootstrap: [IonicApp],
   entryComponents: [MyApp, ...PAGES],
   providers: [

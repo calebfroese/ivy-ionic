@@ -9,4 +9,6 @@ interface Job {
   clientId: string;
   date: Date;
   createdAt: Date;
+  estHours: number;
+  notes: string;
 }
