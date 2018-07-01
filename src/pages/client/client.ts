@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { NavController, NavParams } from 'ionic-angular';
 import * as uuid from 'uuid';
 
-import { Create } from '../../actions/client.actions';
+import { Create, Update } from '../../actions/client.actions';
 
 @Component({
   selector: 'page-client',
@@ -20,16 +20,17 @@ export class ClientPage {
     public store: Store<any>,
     public fb: FormBuilder,
   ) {
-    this.id = navParams.get('clientId');
+    const client = navParams.get('client') || {};
     this.form = this.fb.group({
-      id: new FormControl(this.id || uuid()),
-      name: new FormControl(),
-      address: new FormControl(),
+      id: new FormControl(client.id),
+      name: new FormControl(client.name),
+      address: new FormControl(client.address),
     });
   }
 
-  submit(value) {
-    this.store.dispatch(new Create(value));
+  submit(value: Client) {
+    if (!value.id) this.store.dispatch(new Create(value));
+    else this.store.dispatch(new Update(value));
     this.navCtrl.pop();
   }
 }

@@ -19,10 +19,8 @@ export class ClientsPage implements OnInit {
     this.clients$ = this.store.select(getClients);
   }
 
-  select(clientId) {
-    this.navCtrl.push(ClientPage, {
-      clientId: clientId,
-    });
+  select(client) {
+    this.navCtrl.push(ClientPage, { client });
   }
 
   create() {

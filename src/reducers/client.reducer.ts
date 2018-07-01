@@ -1,6 +1,7 @@
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
+import * as uuid from 'uuid';
 
-import { ClientActionsUnion, ClientActions } from '../actions/client.actions';
+import { ClientActions, ClientActionsUnion } from '../actions/client.actions';
 
 const clientAdapter = createEntityAdapter<Client>();
 
@@ -14,7 +15,13 @@ export function reducer(
 ) {
   switch (action.type) {
     case ClientActions.Create:
-      return clientAdapter.addOne(action.payload, state);
+      return clientAdapter.addOne({ ...action.payload, id: uuid() }, state);
+
+    case ClientActions.Update:
+      return clientAdapter.updateOne(
+        { id: action.payload.id, changes: action.payload },
+        state,
+      );
 
     default:
       return state;
