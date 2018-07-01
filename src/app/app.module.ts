@@ -12,6 +12,7 @@ import { AppEffects } from '../effects/app.effects';
 import { ClientEffects } from '../effects/client.effects';
 import { JobEffects } from '../effects/job.effects';
 import { PAGES } from '../pages';
+import { CompareSortPipe } from '../pipes/compare-sort.pipe';
 import { DayPipe } from '../pipes/dayjs.pipe';
 import { metaReducers, reducers } from '../reducers';
 import { ClientService } from '../services/client.service';
@@ -28,7 +29,7 @@ import { MyApp } from './app.component';
       maxAge: 25,
     }),
   ],
-  declarations: [MyApp, DayPipe, ...PAGES],
+  declarations: [MyApp, DayPipe, CompareSortPipe, ...PAGES],
   bootstrap: [IonicApp],
   entryComponents: [MyApp, ...PAGES],
   providers: [
