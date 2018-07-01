@@ -14,7 +14,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding #item *ngFor="let client of clients$ | async" (click)="select(client)">
+    <ion-item-sliding #item *ngFor="let client of clients$ | async | alphasort:'name'" (click)="select(client)">
       <ion-item>
         <h2>{{ client.name }}</h2>
         <p>{{ client.address }}</p>
