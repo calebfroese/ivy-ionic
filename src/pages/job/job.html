@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Job</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="submit(form.value)">
+    <ion-list inset>
+      <ion-item>
+        <ion-label floating>Client</ion-label>
+        <ion-select formControlName="client">
+          <ion-option *ngFor="let client of clients$ | async" [value]="client">{{ client.name }}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Date</ion-label>
+        <ion-datetime displayFormat="MMM DD HH:mm" min="2018" max="2099" formControlName="date"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Estimated Hours</ion-label>
+        <ion-input type="number" formControlName="estHours"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Notes</ion-label>
+        <ion-textarea formControlName="notes"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <div padding>
+      <button type="submit" ion-button full>Submit</button>
+    </div>
+  </form>
+</ion-content>
