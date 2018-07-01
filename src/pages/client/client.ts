@@ -1,39 +1,35 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { NavController, NavParams } from 'ionic-angular';
 import * as uuid from 'uuid';
 
-import { ClientService } from '../../services/client.service';
+import { Create } from '../../actions/client.actions';
 
 @Component({
   selector: 'page-client',
   templateUrl: 'client.html',
 })
 export class ClientPage {
+  id: string;
   form: FormGroup;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public service: ClientService,
+    public store: Store<any>,
     public fb: FormBuilder,
   ) {
+    this.id = navParams.get('clientId');
     this.form = this.fb.group({
-      id: new FormControl(),
+      id: new FormControl(this.id || uuid()),
       name: new FormControl(),
       address: new FormControl(),
     });
-    const clientId = navParams.get('clientId');
-    if (clientId) {
-      this.service.select(clientId);
-      this.form.patchValue(this.service.selected);
-    } else {
-      this.form.patchValue({ id: uuid() });
-    }
   }
 
   submit(value) {
-    this.service.upsert(value);
+    this.store.dispatch(new Create(value));
     this.navCtrl.pop();
   }
 }
