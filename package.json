@@ -1,7 +1,7 @@
 {
   "name": "ivy-ionic",
   "description": "Offline job management app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Caleb Froese",
   "scripts": {
     "clean": "ionic-app-scripts clean",
