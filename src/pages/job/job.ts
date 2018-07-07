@@ -13,7 +13,7 @@ import { getClients } from '../../reducers';
 })
 export class JobPage implements OnInit {
   clients$: Observable<Client[]>;
-  id: string;
+  job: Job;
   form: FormGroup;
 
   constructor(
@@ -31,7 +31,8 @@ export class JobPage implements OnInit {
       notes: new FormControl(),
       client: new FormControl(),
     });
-    this.form.patchValue(navParams.get('job') || {});
+    this.job = navParams.get('job') || {};
+    this.form.patchValue(this.job);
   }
 
   ngOnInit() {

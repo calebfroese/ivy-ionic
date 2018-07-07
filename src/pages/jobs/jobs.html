@@ -22,12 +22,12 @@
     </ion-segment-button>
   </ion-segment>
   <ion-list *ngIf="filter === 'upcoming'">
-    <ion-item-sliding #item *ngFor="let job of upcomingJobs$ | async | comparesort:'date'" (click)="view(job)">
-        <ion-item>
-            <h2>{{ job.client?.name }}</h2>
-            <h3>{{ job.date | dayjs:'format':'MMMM D YYYY, h:mm a' }}</h3>
-            <p>{{ job.notes }}</p>
-          </ion-item>
+    <ion-item-sliding #item *ngFor="let job of upcomingJobs$ | async | comparesort:'date'">
+      <ion-item (click)="view(job)">
+        <h2>{{ job.client?.name }}</h2>
+        <h3>{{ job.date | dayjs:'format':'MMMM D YYYY, h:mm a' }}</h3>
+        <p>{{ job.notes }}</p>
+      </ion-item>
       <ion-item-options side="right">
         <button ion-button color="primary" (click)="edit(job)">Edit</button>
         <button ion-button color="danger" (click)="delete(job)">Delete</button>
