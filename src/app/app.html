@@ -1,14 +1,14 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar color="primary">
-      <ion-title>Ivy</ion-title>
+      <ion-title text-center>Ivy</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
+  <ion-content class="bg-primary">
     <ion-list>
-      <ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-icon color="primary" [name]="p.icon" item-start></ion-icon>
+      <ion-item no-lines color="primary" menuClose *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon color="light" [name]="p.icon" item-start></ion-icon>
         {{p.title}}
       </ion-item>
     </ion-list>

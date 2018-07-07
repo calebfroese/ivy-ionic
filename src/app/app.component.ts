@@ -16,7 +16,7 @@ export class MyApp {
 
   rootPage: any = JobsPage;
 
-  pages: Array<{ title: string; component: any }>;
+  pages: Array<{ title: string; component: any, icon: string }>;
 
   constructor(
     public platform: Platform,
