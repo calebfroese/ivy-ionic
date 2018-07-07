@@ -27,10 +27,10 @@ export class JobPage implements OnInit {
       date: new FormControl(new Date().toISOString()),
       createdAt: new FormControl(new Date().toISOString()),
       estHours: new FormControl(),
+      quote: new FormControl(),
       notes: new FormControl(),
       client: new FormControl(),
     });
-    console.log(navParams.get('job'));
     this.form.patchValue(navParams.get('job') || {});
   }
 
@@ -39,6 +39,7 @@ export class JobPage implements OnInit {
   }
 
   submit(value: Job & { client: Client }) {
+    if (!value.client) return;
     value.clientId = value.client.id;
     delete value.client;
     if (!value.id) this.store.dispatch(new Create(value));
