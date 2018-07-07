@@ -12,6 +12,8 @@ interface Job {
   client?: Client;
   date: Date;
   createdAt: Date;
+  startedAt?: Date;
+  finishedAt?: Date;
   estHours: number;
   quote?: number;
   notes: string;

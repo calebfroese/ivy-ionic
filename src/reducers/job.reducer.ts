@@ -20,6 +20,18 @@ export function reducer(state: State = initialState, action: JobActionsUnion) {
         state,
       );
 
+    case JobActions.Start:
+      return job.updateOne(
+        { id: action.payload.id, changes: { startedAt: new Date() } },
+        state,
+      );
+
+    case JobActions.Finish:
+      return job.updateOne(
+        { id: action.payload.id, changes: { finishedAt: new Date() } },
+        state,
+      );
+
     case JobActions.Delete:
       return job.removeOne(action.payload, state);
 
