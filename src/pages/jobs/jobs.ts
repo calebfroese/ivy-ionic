@@ -30,6 +30,10 @@ export class JobsPage implements OnInit {
     );
     this.upcomingJobs$ = this.jobs$.pipe(
       map(jobs => jobs.filter(job => dayjs(job.date).isAfter(startOfToday))),
+      map(jobs => {
+        if (jobs[0]) this.view(jobs[0]);
+        return jobs;
+      }),
     );
   }
 

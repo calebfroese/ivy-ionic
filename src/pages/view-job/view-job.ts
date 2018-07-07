@@ -7,13 +7,15 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'view-job.html',
 })
 export class ViewJobPage implements OnInit {
-  id: string;
+  job: Job;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public store: Store<any>,
-  ) {}
+  ) {
+    this.job = navParams.get('job');
+  }
 
   ngOnInit() {}
 }

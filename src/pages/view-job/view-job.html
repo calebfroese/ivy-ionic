@@ -5,5 +5,32 @@
 </ion-header>
 
 <ion-content>
-    Content
+  <ion-list>
+    <ion-item *ngIf="job.client">
+      <ion-icon name="person" item-start></ion-icon>
+      <h3>Client</h3>
+      <p>{{ job.client.name }}</p>
+    </ion-item>
+    <ion-item *ngIf="job.estHours">
+      <ion-icon name="time" item-start></ion-icon>
+      <h3>Estimated Hours</h3>
+      <p>{{ job.estHours }}</p>
+    </ion-item>
+    <ion-item *ngIf="job.quote">
+      <ion-icon name="cash" item-start></ion-icon>
+      <h3>Quote</h3>
+      <p>${{ job.quote }}</p>
+    </ion-item>
+    <ion-item *ngIf="job.notes">
+      <h2>Notes</h2>
+      <p text-wrap>{{ job.notes }}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="dark">
+    <ion-title text-center>00:10:32</ion-title>
+    <button ion-button  full>START</button>
+  </ion-toolbar>
+</ion-footer>
