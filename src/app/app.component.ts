@@ -16,7 +16,7 @@ export class MyApp {
 
   rootPage: any = JobsPage;
 
-  pages: Array<{ title: string; component: any }>;
+  pages: Array<{ title: string; component: any, icon: string }>;
 
   constructor(
     public platform: Platform,
@@ -28,8 +28,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Jobs', component: JobsPage },
-      { title: 'Clients', component: ClientsPage },
+      { title: 'Jobs', icon: 'briefcase', component: JobsPage },
+      { title: 'Clients', icon: 'people', component: ClientsPage },
     ];
   }
 
