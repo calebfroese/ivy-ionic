@@ -37,8 +37,8 @@
           <p>Job scheduled for {{ job.date | moment:'format':'hh:mm a' }}</p>
         </ng-template>
       </ion-title>
-      <button *ngIf="!job.startedAt" color="secondary" ion-button full (click)="start(job)">START</button>
-      <button *ngIf="job.startedAt" color="secondary" ion-button full (click)="finish(job)">FINISH</button>
+      <button *ngIf="!job.startedAt" color="danger" ion-button full (click)="start(job)">START</button>
+      <button *ngIf="job.startedAt" color="danger" ion-button full (click)="finish(job)">FINISH</button>
     </ion-toolbar>
   </ion-footer>
 </ng-container>
