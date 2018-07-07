@@ -1,28 +1,28 @@
 <ion-header>
-    <ion-navbar color="primary">
-        <ion-title>Client</ion-title>
-    </ion-navbar>
+  <ion-navbar color="primary">
+    <ion-title text-center>Client</ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <form [formGroup]="form" (ngSubmit)="submit(form.value)">
-        <ion-list inset>
-            <ion-item>
-                <ion-label floating>Name</ion-label>
-                <ion-input formControlName="name"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label floating>Address</ion-label>
-                <ion-input formControlName="address"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label floating>Phone Number</ion-label>
-                <ion-input formControlName="phone"></ion-input>
-            </ion-item>
-        </ion-list>
+  <form [formGroup]="form" (ngSubmit)="submit(form.value)">
+    <ion-list inset>
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Address</ion-label>
+        <ion-input formControlName="address"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Phone Number</ion-label>
+        <ion-input formControlName="phone"></ion-input>
+      </ion-item>
+    </ion-list>
 
-        <div padding>
-            <button type="submit" ion-button full>Submit</button>
-        </div>
-    </form>
+    <div padding>
+      <button type="submit" ion-button full>Submit</button>
+    </div>
+  </form>
 </ion-content>
