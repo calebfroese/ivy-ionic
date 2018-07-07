@@ -24,6 +24,7 @@ export class ClientPage {
       id: new FormControl(client.id),
       name: new FormControl(client.name),
       address: new FormControl(client.address),
+      phone: new FormControl(client.phone),
     });
   }
 
