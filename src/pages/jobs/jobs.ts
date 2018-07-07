@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { Delete } from '../../actions/job.actions';
 import { getJobs } from '../../reducers';
 import { JobPage } from '../job/job';
+import { ViewJobPage } from '../view-job/view-job';
 
 @Component({
   selector: 'page-jobs',
@@ -17,7 +18,7 @@ export class JobsPage implements OnInit {
   jobs$: Observable<Job[]>;
   pastJobs$: Observable<Job[]>;
   upcomingJobs$: Observable<Job[]>;
-  view: 'upcoming' | 'past' = 'upcoming';
+  filter: 'upcoming' | 'past' = 'upcoming';
 
   constructor(public navCtrl: NavController, public store: Store<any>) {}
 
@@ -32,7 +33,11 @@ export class JobsPage implements OnInit {
     );
   }
 
-  select(job) {
+  view(job) {
+    this.navCtrl.push(ViewJobPage, { job });
+  }
+
+  edit(job) {
     this.navCtrl.push(JobPage, { job });
   }
 
