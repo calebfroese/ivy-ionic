@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { NavController, NavParams } from 'ionic-angular';
 import * as moment from 'moment';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Observable } from 'rxjs/Observable';
 import { timer } from 'rxjs/observable/timer';
 import { filter, map, switchMap } from 'rxjs/operators';
@@ -21,6 +22,7 @@ export class ViewJobPage implements OnInit {
     public navCtrl: NavController,
     public navParams: NavParams,
     public store: Store<any>,
+    public camera: Camera,
   ) {}
 
   ngOnInit() {
@@ -45,5 +47,14 @@ export class ViewJobPage implements OnInit {
 
   finish(job: Job) {
     this.store.dispatch(new Finish(job));
+  }
+
+  async takePicture() {
+    const pic = await this.camera.getPicture({
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      mediaType: this.camera.MediaType.PICTURE,
+    });
+    debugger;
   }
 }
