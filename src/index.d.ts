@@ -13,5 +13,6 @@ interface Job {
   date: Date;
   createdAt: Date;
   estHours: number;
+  quote?: number;
   notes: string;
 }
