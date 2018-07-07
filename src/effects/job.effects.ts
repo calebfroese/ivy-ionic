@@ -12,7 +12,13 @@ import { getJobState } from '../reducers';
 export class JobEffects {
   @Effect({ dispatch: false })
   save$ = this.actions$
-    .ofType(JobActions.Create, JobActions.Delete, JobActions.Update)
+    .ofType(
+      JobActions.Create,
+      JobActions.Delete,
+      JobActions.Update,
+      JobActions.Start,
+      JobActions.Finish,
+    )
     .pipe(
       switchMap(() => this.store.select(getJobState)),
       switchMap((state: any) => fromPromise(this.storage.set('job', state))),

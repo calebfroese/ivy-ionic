@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import * as dayjs from 'dayjs';
+import * as moment from 'moment';
 
-@Pipe({ name: 'dayjs', pure: true })
-export class DayPipe implements PipeTransform {
-  public day = dayjs;
+@Pipe({ name: 'moment', pure: true })
+export class MomentPipe implements PipeTransform {
+  public day = moment;
 
   transform(
     value: Date | any | Array<string | number | any | Date>,

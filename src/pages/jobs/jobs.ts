@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as dayjs from 'dayjs';
 import { NavController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
@@ -8,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { Delete } from '../../actions/job.actions';
 import { getJobs } from '../../reducers';
 import { JobPage } from '../job/job';
+import { ViewJobPage } from '../view-job/view-job';
 
 @Component({
   selector: 'page-jobs',
@@ -15,24 +15,31 @@ import { JobPage } from '../job/job';
 })
 export class JobsPage implements OnInit {
   jobs$: Observable<Job[]>;
-  pastJobs$: Observable<Job[]>;
-  upcomingJobs$: Observable<Job[]>;
-  view: 'upcoming' | 'past' = 'upcoming';
+  completedJobs$: Observable<Job[]>;
+  incompleteJobs$: Observable<Job[]>;
+  filter: 'incomplete' | 'completed' = 'incomplete';
 
   constructor(public navCtrl: NavController, public store: Store<any>) {}
 
   ngOnInit() {
-    const startOfToday = dayjs(dayjs().format('YYYY-MM-DD'));
     this.jobs$ = this.store.select(getJobs);
-    this.pastJobs$ = this.jobs$.pipe(
-      map(jobs => jobs.filter(job => dayjs(job.date).isBefore(startOfToday))),
+    this.completedJobs$ = this.jobs$.pipe(
+      map(jobs => jobs.filter(job => {
+        var x = !!job.finishedAt;
+        console.log(x);
+        return x;
+      })),
     );
-    this.upcomingJobs$ = this.jobs$.pipe(
-      map(jobs => jobs.filter(job => dayjs(job.date).isAfter(startOfToday))),
+    this.incompleteJobs$ = this.jobs$.pipe(
+      map(jobs => jobs.filter(job => !job.finishedAt)),
     );
   }
 
-  select(job) {
+  view(job: Job) {
+    this.navCtrl.push(ViewJobPage, { job });
+  }
+
+  edit(job: Job) {
     this.navCtrl.push(JobPage, { job });
   }
 

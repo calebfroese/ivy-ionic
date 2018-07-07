@@ -13,30 +13,31 @@
 </ion-header>
 
 <ion-content>
-  <ion-segment [(ngModel)]="view">
-    <ion-segment-button value="upcoming">
+  <ion-segment [(ngModel)]="filter">
+    <ion-segment-button value="incomplete">
       Upcoming
     </ion-segment-button>
-    <ion-segment-button value="past">
-      Past
+    <ion-segment-button value="completed">
+      Completed
     </ion-segment-button>
   </ion-segment>
-  <ion-list *ngIf="view === 'upcoming'">
-    <ion-item-sliding #item *ngFor="let job of upcomingJobs$ | async | comparesort:'date'" (click)="select(job)">
-        <ion-item>
-            <h2>{{ job.client?.name }}</h2>
-            <h3>{{ job.date | dayjs:'format':'MMMM D YYYY, h:mm a' }}</h3>
-            <p>{{ job.notes }}</p>
-          </ion-item>
+  <ion-list *ngIf="filter === 'incomplete'">
+    <ion-item-sliding #item *ngFor="let job of incompleteJobs$ | async | comparesort:'date'">
+      <ion-item (click)="view(job)">
+        <h2>{{ job.client?.name }}</h2>
+        <h3>{{ job.date | moment:'format':'MMMM D YYYY, h:mm a' }}</h3>
+        <p>{{ job.notes }}</p>
+      </ion-item>
       <ion-item-options side="right">
+        <button ion-button color="primary" (click)="edit(job)">Edit</button>
         <button ion-button color="danger" (click)="delete(job)">Delete</button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-  <ion-list *ngIf="view === 'past'">
-    <ion-item *ngFor="let job of pastJobs$ | async | comparesort:'date':true" (click)="select(job)">
+  <ion-list *ngIf="filter === 'completed'">
+    <ion-item *ngFor="let job of completedJobs$ | async | comparesort:'date':true" (click)="view(job)">
       <h2>{{ job.client?.name }}</h2>
-      <p>{{ job.date | dayjs:'format':'MMMM D YYYY, h:mm a' }}</p>
+      <p>{{ job.date | moment:'format':'MMMM D YYYY, h:mm a' }}</p>
     </ion-item>
   </ion-list>
 </ion-content>
