@@ -29,7 +29,6 @@
     "@ngrx/store": "5.2.0",
     "@ngrx/store-devtools": "5.2.0",
     "cordova-android": "7.0.0",
-    "cordova-browser": "5.0.3",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.1.2",
@@ -61,8 +60,7 @@
       "cordova-plugin-camera": {}
     },
     "platforms": [
-      "android",
-      "browser"
+      "android"
     ]
   }
 }
