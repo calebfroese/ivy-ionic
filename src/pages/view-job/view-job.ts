@@ -33,8 +33,8 @@ export class ViewJobPage implements OnInit {
       filter(job => !!job.startedAt),
       map(job =>
         moment
-          .duration(Date.now() - job.startedAt.valueOf(), 'milliseconds')
-          .humanize(),
+          .utc(moment(job.finishedAt).diff(moment(job.startedAt)))
+          .format('HH:mm:ss'),
       ),
     );
   }

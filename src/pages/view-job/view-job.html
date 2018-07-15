@@ -10,15 +10,32 @@
         <h3>Client</h3>
         <p>{{ job.client.name }}</p>
       </ion-item>
+      <ion-item *ngIf="job.date">
+        <ion-icon name="calendar" item-start></ion-icon>
+        <h3>Date</h3>
+        <p>{{ job.date | moment:'format':'LLL' }}</p>
+      </ion-item>
       <ion-item *ngIf="job.estHours">
         <ion-icon name="time" item-start></ion-icon>
         <h3>Estimated Hours</h3>
-        <p>{{ job.estHours }}</p>
+        <p>{{ job.estHours }} hours</p>
       </ion-item>
       <ion-item *ngIf="job.quote">
         <ion-icon name="cash" item-start></ion-icon>
         <h3>Quote</h3>
         <p>${{ job.quote }}</p>
+      </ion-item>
+      <ion-item *ngIf="job.startedAt">
+        <h2>Started At</h2>
+        <p>{{ job.startedAt | moment:'format':'LLLL' }}</p>
+      </ion-item>
+      <ion-item *ngIf="job.finishedAt">
+        <h2>Finished At</h2>
+        <p>{{ job.finishedAt | moment:'format':'LLLL' }}</p>
+      </ion-item>
+      <ion-item *ngIf="job.finishedAt">
+        <h2>Duration</h2>
+        <p>{{ runtime$ | async }}</p>
       </ion-item>
       <ion-item *ngIf="job.notes">
         <h2>Notes</h2>
@@ -29,14 +46,7 @@
 
   <ion-footer *ngIf="!job.finishedAt">
     <ion-toolbar color="dark">
-      <ion-title text-center>
-        <ng-container *ngIf="runtime$ | async as runtime; else unstarted">
-          <p>In progress for {{ runtime }}</p>
-        </ng-container>
-        <ng-template #unstarted>
-          <p>Job scheduled for {{ job.date | moment:'format':'hh:mm a' }}</p>
-        </ng-template>
-      </ion-title>
+      <ion-title text-center *ngIf="runtime$ | async as runtime">{{ runtime }}</ion-title>
       <button *ngIf="!job.startedAt" color="danger" ion-button full (click)="start(job)">START</button>
       <button *ngIf="job.startedAt" color="danger" ion-button full (click)="finish(job)">FINISH</button>
     </ion-toolbar>
