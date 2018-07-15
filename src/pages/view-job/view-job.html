@@ -25,6 +25,18 @@
         <h3>Quote</h3>
         <p>${{ job.quote }}</p>
       </ion-item>
+      <ion-item *ngIf="job.startedAt">
+        <h2>Started At</h2>
+        <p>{{ job.startedAt | moment:'format':'LLLL' }}</p>
+      </ion-item>
+      <ion-item *ngIf="job.finishedAt">
+        <h2>Finished At</h2>
+        <p>{{ job.finishedAt | moment:'format':'LLLL' }}</p>
+      </ion-item>
+      <ion-item *ngIf="job.finishedAt">
+        <h2>Duration</h2>
+        <p>{{ runtime$ | async }}</p>
+      </ion-item>
       <ion-item *ngIf="job.notes">
         <h2>Notes</h2>
         <p text-wrap>{{ job.notes }}</p>
