@@ -46,14 +46,7 @@
 
   <ion-footer *ngIf="!job.finishedAt">
     <ion-toolbar color="dark">
-      <ion-title text-center>
-        <ng-container *ngIf="runtime$ | async as runtime; else unstarted">
-          <p>{{ runtime }}</p>
-        </ng-container>
-        <ng-template #unstarted>
-          <p>Job scheduled for {{ job.date | moment:'format':'hh:mm a' }}</p>
-        </ng-template>
-      </ion-title>
+      <ion-title text-center *ngIf="runtime$ | async as runtime">{{ runtime }}</ion-title>
       <button *ngIf="!job.startedAt" color="danger" ion-button full (click)="start(job)">START</button>
       <button *ngIf="job.startedAt" color="danger" ion-button full (click)="finish(job)">FINISH</button>
     </ion-toolbar>
