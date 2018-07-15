@@ -10,6 +10,11 @@
         <h3>Client</h3>
         <p>{{ job.client.name }}</p>
       </ion-item>
+      <ion-item *ngIf="job.date">
+        <ion-icon name="calendar" item-start></ion-icon>
+        <h3>Date</h3>
+        <p>{{ job.date | moment:'format':'LLL' }}</p>
+      </ion-item>
       <ion-item *ngIf="job.estHours">
         <ion-icon name="time" item-start></ion-icon>
         <h3>Estimated Hours</h3>
