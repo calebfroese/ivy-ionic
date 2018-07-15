@@ -32,9 +32,7 @@ export class ViewJobPage implements OnInit {
       switchMap(() => this.job$),
       filter(job => !!job.startedAt),
       map(job =>
-        moment
-          .duration(Date.now() - job.startedAt.valueOf(), 'milliseconds')
-          .humanize(),
+        moment.utc(moment().diff(moment(job.startedAt))).format('HH:mm:ss'),
       ),
     );
   }

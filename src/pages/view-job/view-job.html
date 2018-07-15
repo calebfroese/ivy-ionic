@@ -31,7 +31,7 @@
     <ion-toolbar color="dark">
       <ion-title text-center>
         <ng-container *ngIf="runtime$ | async as runtime; else unstarted">
-          <p>In progress for {{ runtime }}</p>
+          <p>{{ runtime }}</p>
         </ng-container>
         <ng-template #unstarted>
           <p>Job scheduled for {{ job.date | moment:'format':'hh:mm a' }}</p>
