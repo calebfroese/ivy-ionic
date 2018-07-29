@@ -33,8 +33,8 @@ export class JobEffects {
       this.notifications.schedule({
         text: `Job for ${job.client.name} in ${moment(job.date).fromNow()}`,
         trigger: {
-          at: moment()
-            .add(2, 'hours')
+          at: moment(job.date)
+            .subtract(2, 'hours')
             .toDate(),
         },
       });
