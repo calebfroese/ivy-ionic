@@ -10,7 +10,12 @@ export enum JobActions {
 
 export class Create implements Action {
   readonly type = JobActions.Create;
-  constructor(public payload: Pick<Job, Exclude<keyof Job, 'id'>>) {}
+  constructor(
+    public payload: Pick<
+      Job & { client: Client; notification: boolean },
+      Exclude<keyof Job, 'id'>
+    >,
+  ) {}
 }
 export class Update implements Action {
   readonly type = JobActions.Update;

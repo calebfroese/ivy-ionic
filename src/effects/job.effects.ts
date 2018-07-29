@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 import { Actions, Effect } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { fromPromise } from 'rxjs/observable/fromPromise';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap, tap, filter } from 'rxjs/operators';
 import * as moment from 'moment';
 
 import { JobActions } from '../actions/job.actions';
@@ -28,6 +28,7 @@ export class JobEffects {
 
   @Effect({ dispatch: false })
   notify$ = this.actions$.ofType(JobActions.Create).pipe(
+    filter((action: any) => !!action.payload.notification),
     tap((action: any) => {
       const job: Job = action.payload;
       this.notifications.schedule({

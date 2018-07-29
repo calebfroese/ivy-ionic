@@ -40,7 +40,7 @@ export class JobPage implements OnInit {
     this.clients$ = this.store.select(getClients);
   }
 
-  submit(value: Job & { client: Client }) {
+  submit(value: Job & { client: Client } & { notification: boolean }) {
     if (!value.client) return;
     value.clientId = value.client.id;
     if (!value.id) this.store.dispatch(new Create(value));
