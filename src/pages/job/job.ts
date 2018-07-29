@@ -42,7 +42,6 @@ export class JobPage implements OnInit {
   submit(value: Job & { client: Client }) {
     if (!value.client) return;
     value.clientId = value.client.id;
-    delete value.client;
     if (!value.id) this.store.dispatch(new Create(value));
     else this.store.dispatch(new Update(value));
     this.navCtrl.pop();

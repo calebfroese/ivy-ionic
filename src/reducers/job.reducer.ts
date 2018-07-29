@@ -12,7 +12,10 @@ export const initialState: State = job.getInitialState();
 export function reducer(state: State = initialState, action: JobActionsUnion) {
   switch (action.type) {
     case JobActions.Create:
-      return job.addOne({ ...action.payload, id: uuid() }, state);
+      return job.addOne(
+        { ...action.payload, client: undefined, id: uuid() },
+        state,
+      );
 
     case JobActions.Update:
       return job.updateOne(
