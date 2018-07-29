@@ -10,17 +10,19 @@
       </button>
     </ion-buttons>
   </ion-navbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="filter">
+      <ion-segment-button value="incomplete">
+        Upcoming
+      </ion-segment-button>
+      <ion-segment-button value="completed">
+        Completed
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-segment [(ngModel)]="filter">
-    <ion-segment-button value="incomplete">
-      Upcoming
-    </ion-segment-button>
-    <ion-segment-button value="completed">
-      Completed
-    </ion-segment-button>
-  </ion-segment>
   <ion-list *ngIf="filter === 'incomplete'">
     <ion-item-sliding #item *ngFor="let job of incompleteJobs$ | async | comparesort:'date'">
       <ion-item (click)="view(job)">
